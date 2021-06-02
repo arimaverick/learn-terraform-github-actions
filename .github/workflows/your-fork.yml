@@ -14,4 +14,6 @@ jobs:
     steps:
     - name: Check gh cli
       run: |
-        gh auth login --with-token $repo_token
+        echo $repo_token > my-token.txt
+        gh auth login --with-token < my-token.txt
+        rm my-token.txt

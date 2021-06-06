@@ -10,7 +10,7 @@ jobs:
     name: "Check GH CLI"
     env:
       #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      repo_token: ${{ secrets.GITHUB_TOKEN }}
+      repo_token: ${{ secrets.REPOSITORY_DISPATCH_TOKEN }}
     runs-on: ubuntu-latest
     steps:
     #- name: Check gh cli

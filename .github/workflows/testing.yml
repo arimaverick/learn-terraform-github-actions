@@ -9,7 +9,7 @@ jobs:
   check-cli:
     name: "Check GH CLI"
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       repo_token: ${{ secrets.GITHUB_TOKEN }}
     runs-on: ubuntu-latest
     steps:

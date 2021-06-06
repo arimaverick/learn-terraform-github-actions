@@ -10,10 +10,11 @@ jobs:
     name: "Check GH CLI"
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      repo_token: ${{ secrets.GITHUB_TOKEN }}
     runs-on: ubuntu-latest
     steps:
     - name: Check gh cli
       run: |
-        echo $GITHUB_TOKEN > my-token.txt
-        gh login auth --with-token < my-token.txt
+        echo $repo_token > my-token.txt
+        gh auth login --with-token < my-token.txt
         gh api -H 'Accept: application/vnd.github.v3.raw+json' https://api.github.com/repos/arimaverick/githubactions-demo/dispatches -f body='Hi from CLI'

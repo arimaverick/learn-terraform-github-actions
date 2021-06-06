@@ -15,5 +15,5 @@ jobs:
     - name: Check gh cli
       run: |
         echo $GITHUB_TOKEN > my-token.txt
-        gh login --with-token < my-token.txt
+        gh login auth --with-token < my-token.txt
         gh api -H 'Accept: application/vnd.github.v3.raw+json' https://api.github.com/repos/arimaverick/githubactions-demo/dispatches -f body='Hi from CLI'

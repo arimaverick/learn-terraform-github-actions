@@ -13,8 +13,16 @@ jobs:
       repo_token: ${{ secrets.GITHUB_TOKEN }}
     runs-on: ubuntu-latest
     steps:
-    - name: Check gh cli
+    #- name: Check gh cli
+    #  run: |
+    #    echo $repo_token > my-token.txt
+    #    gh auth login --with-token < my-token.txt
+    #    gh api -H 'Accept: application/vnd.github.v3.raw+json' https://api.github.com/repos/arimaverick/githubactions-demo/dispatches -f body='Hi from CLI'
+    - name: Rest API dispatcher-trap
       run: |
-        echo $repo_token > my-token.txt
-        gh auth login --with-token < my-token.txt
-        gh api -H 'Accept: application/vnd.github.v3.raw+json' https://api.github.com/repos/arimaverick/githubactions-demo/dispatches -f body='Hi from CLI'
+        curl \
+        -X POST \
+        -H "Accept: application/vnd.github.v3+json" \
+        -H "Authorization: token $repo_token"
+        https://api.github.com/repos/arimaverick/githubactions-demo/dispatches \
+        -d '{"event_type":"build"}'

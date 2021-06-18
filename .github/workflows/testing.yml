@@ -2,7 +2,8 @@ name: Check CLI
 
 on:
   push:
-    branches: [ update-tfc-backend ]
+    branches:
+    - '***'
   workflow_dispatch:
 
 jobs:

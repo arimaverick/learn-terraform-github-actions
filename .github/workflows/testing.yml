@@ -1,0 +1,24 @@
+name: Check CLI
+
+on:
+  push:
+    branches: [ update-tfc-backend ]
+  workflow_dispatch:
+
+jobs:
+  check-cli:
+    name: "Check GH CLI"
+    env:
+      #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      repo_token: ${{ secrets.REPOSITORY_DISPATCH_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+    #- name: gh cli repo dispatcher
+    #  run: |
+    #    echo $repo_token > my-token.txt
+    #    gh auth login --with-token < my-token.txt
+    #    rm my-token.txt
+    #    gh api --method POST -H 'Accept: application/vnd.github.v3.raw+json' https://api.github.com/repos/arimaverick/githubactions-demo/dispatches --input - <<< '{"event_type":"build","client_payload": {"ref": "main", "version": "1.2.1"}}'
+    - name: Rest API dispatcher-trap
+      run: |
+        curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $repo_token" https://api.github.com/repos/arimaverick/githubactions-demo/dispatches -d '{"event_type":"build", "client_payload": { "version": "1.3.3", "ref": "main"}}'
